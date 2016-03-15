@@ -113,9 +113,18 @@ namespace CodeSort
                 if (meth.DescendantNodes().Any(f => f.IsKind(SyntaxKind.ExplicitInterfaceSpecifier))) access = 0;
             }
 
+            var cl = n as ClassDeclarationSyntax;
+            if (cl != null)
+            {
+                mods = cl.Modifiers;
+                ident = cl.Identifier.Text;
+                tp = 5;
+            }
+
             if (mods.Any(f => f.IsKind(SyntaxKind.PublicKeyword))) access = 0;
             if (mods.Any(f => f.IsKind(SyntaxKind.InternalKeyword))) access = 1;
-            if (mods.Any(f => f.IsKind(SyntaxKind.PrivateKeyword))) access = 2;
+            if (mods.Any(f => f.IsKind(SyntaxKind.ProtectedKeyword))) access = 2;
+            if (mods.Any(f => f.IsKind(SyntaxKind.PrivateKeyword))) access = 3;
 
             int visib = 2;
 

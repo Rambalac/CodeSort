@@ -14,7 +14,7 @@ namespace CodeSort.Tests
         public void SortFileTest()
         {
             var obj = new ClassMemberSorter();
-            obj.SortAllFiles(@"D:\dev2\AmazonCloudDriveApi");
+            obj.SortAllFiles(@"D:\dev2\JoinerSplitter\JoinerSplitter");
             //obj.SortFile(@"D:\dev2\AmazonCloudDriveApi\AmazonNodes.cs");
         }
     }
