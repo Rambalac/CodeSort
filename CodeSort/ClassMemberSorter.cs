@@ -86,12 +86,20 @@ namespace CodeSort
                 tp = 1;
             }
 
+            var ev = n as EventFieldDeclarationSyntax;
+            if (ev != null)
+            {
+                mods = ev.Modifiers;
+                ident = ev.ChildNodes().OfType<VariableDeclarationSyntax>().First().Variables.First().Identifier.Text;
+                tp = 2;
+            }
+
             var prop = n as PropertyDeclarationSyntax;
             if (prop != null)
             {
                 mods = prop.Modifiers;
                 ident = prop.Identifier.Text;
-                tp = 2;
+                tp = 3;
             }
 
             int access = 2;
@@ -101,7 +109,7 @@ namespace CodeSort
             {
                 mods = meth.Modifiers;
                 ident = meth.Identifier.Text;
-                tp = 3;
+                tp = 4;
                 if (meth.DescendantNodes().Any(f => f.IsKind(SyntaxKind.ExplicitInterfaceSpecifier))) access = 0;
             }
 
